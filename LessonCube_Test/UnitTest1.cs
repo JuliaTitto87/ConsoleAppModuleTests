@@ -10,38 +10,29 @@ namespace LessonCube_Test
             brick = new Brick();
         }
 
-
-        [Fact]
-        public void Test1()
-        {
-            
-            var output = new StringWriter();
-            Console.SetOut(output);
-
-            brick.Brick_surface_area();
-
-            var outputString = output.ToString();
-
-            if (outputString[0] == '-')
-            {
-                Assert.Fail("Bricks area has negative meaning");
-            }
-        }
-        public void Dispose()
-        {
-
-        }
         [Theory]
-        [InlineData(new object[] { 1.8, 1800 })]
-
-        public void If_density_is_18_mass_equals (double density, double mass)
+        [InlineData(new object[] { 0, -2, 3 })]
+        public void NegativeTest_IfEnteredValuesAreNotGreaterThanZeroReturnException(double a, double b, double c) 
         {
-            // act
-            var result = brick.Brick_mass(density);
-
-            // assert
-            Assert.Equal(mass, result);
+            Assert.Throws<ArgumentException>(() => brick.Brick_surface_area(a, b, c));
         }
+public void Dispose()
+        {
+
+        }
+
+
+
+        [Theory]
+        [InlineData(new object[] {1, 5, 10, 130})]
+        public void PozitiveTest_EnterParametersAndGetArea(double a, double b, double c, double area)
+        {
+            var result = brick.Brick_surface_area(a, b, c);
+
+            Assert.Equal(area, result);
+
+        }
+        
 
     }
 }

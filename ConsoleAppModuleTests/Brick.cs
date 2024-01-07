@@ -8,21 +8,14 @@ namespace ConsoleAppModuleTests
 {
     public class Brick
     {
-        private double a = 10;
-        private double b = 20;
-        private double c = 5;
-        public void Brick_surface_area()
+        public double Brick_surface_area(double height, double width, double length)
         {
+            if (height <= 0 || width <= 0 || length <= 0)
+            { throw new ArgumentException("The entered values are not greater than zero"); }
             double S;
-            S = ((a * b) + (a * c) + (c * b)) * 2;
-            Console.WriteLine(S);
+            S = ((height * width) + (width * length) + (height * length)) * 2;
+            return S;
         }
 
-        public double Brick_mass(double density)
-        {
-            double mass;
-            mass = a * b * c * density;
-            return mass;
-        }
     }
 }
